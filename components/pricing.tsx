@@ -1,13 +1,10 @@
 import React from "react";
 import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import { createClient } from '@/utils/supabase/server';
 import UpgradeButton from './UpgradeButton';
 
 export default async function Pricing() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isLoggedIn = !!user;
+  const isLoggedIn = false;
 
   // We will assume these env vars exist in .env.local
   const monthlyProductId = process.env.NEXT_PUBLIC_DODO_PRO_MONTHLY_ID || 'dummy_monthly_id';
@@ -62,10 +59,10 @@ export default async function Pricing() {
             </ul>
 
             <Link 
-              href={isLoggedIn ? "/dashboard" : "/login"} 
+              href="#waitlist" 
               className="w-full text-center px-6 py-4 bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-900 font-bold rounded-full transition-colors"
             >
-              {isLoggedIn ? "Go to Dashboard" : "Start free"}
+              Join Waitlist
             </Link>
           </div>
 
@@ -113,10 +110,10 @@ export default async function Pricing() {
               />
             ) : (
               <Link 
-                href="/login?returnTo=upgrade_monthly" 
+                href="#waitlist" 
                 className="w-full text-center px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-colors"
               >
-                Start Pro
+                Join Waitlist
               </Link>
             )}
           </div>
@@ -151,10 +148,10 @@ export default async function Pricing() {
               />
             ) : (
               <Link 
-                href="/login?returnTo=upgrade_sprint" 
+                href="#waitlist" 
                 className="block w-full text-center px-8 py-4 bg-white hover:bg-gray-50 text-indigo-900 font-bold rounded-full transition-colors"
               >
-                Get the Sprint
+                Join Waitlist
               </Link>
             )}
           </div>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Linkedin, Twitter, Video } from "lucide-react";
+import { Video } from "lucide-react";
 import Logob from "./images/logob.png";
 
 export default function Footer() {
@@ -17,12 +17,6 @@ export default function Footer() {
 						<p className="text-sm leading-relaxed">
 							Talent is universal. Opportunity should be too.
 						</p>
-						<div className="flex items-center gap-4">
-							<Link href="#" className="hover:text-white transition-colors"><Twitter size={20} /></Link>
-							<Link href="#" className="hover:text-white transition-colors"><Linkedin size={20} /></Link>
-							<Link href="#" className="hover:text-white transition-colors"><Instagram size={20} /></Link>
-							<Link href="#" className="hover:text-white transition-colors"><Video size={20} /></Link>
-						</div>
 					</div>
 
 					{/* Column 2: Product */}
