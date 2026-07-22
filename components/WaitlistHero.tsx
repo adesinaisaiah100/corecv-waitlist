@@ -118,6 +118,7 @@ function ZIndexSeamlessVideo() {
 // ── Main Waitlist Hero ──────────────────────────────────────────────────────
 export default function WaitlistHero() {
   const [mounted, setMounted] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
   return (
@@ -125,6 +126,12 @@ export default function WaitlistHero() {
       className="min-h-screen w-full flex flex-col overflow-x-hidden"
       style={{ background: "#0D1117" }}
     >
+      <style>{`
+        @keyframes formPop {
+          0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+      `}</style>
       {/* ── Navbar ──────────────────────────────────────── */}
       <nav className="w-full flex items-center justify-between px-6 md:px-10 py-5 z-50">
         <div className="flex items-center gap-2.5">
@@ -222,21 +229,41 @@ export default function WaitlistHero() {
                 get access and help shape how ambitious professionals build their careers.
               </p>
 
-              {/* Waitlist Form Card */}
+              {/* Waitlist Form Card or Button */}
               <div
-                className="w-full max-w-md rounded-2xl p-7 border mb-10"
+                className="w-full max-w-md mb-10"
                 style={{
-                  background: "rgba(255,255,255,0.03)",
-                  borderColor: "rgba(255,255,255,0.07)",
-                  backdropFilter: "blur(12px)",
-                  boxShadow: "0 32px 64px rgba(0,0,0,0.4)",
                   opacity: mounted ? 1 : 0,
                   transform: mounted ? "translateY(0)" : "translateY(14px)",
                   transition: `opacity 0.65s ${EASE.join(",")}, transform 0.65s ${EASE.join(",")}`,
                   transitionDelay: "0.42s",
                 }}
               >
-                <WaitlistForm />
+                {!showForm ? (
+                  <button
+                    onClick={() => setShowForm(true)}
+                    className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-[1.0625rem] text-white shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+                    style={{ background: "linear-gradient(135deg, #10B981, #059669)" }}
+                  >
+                    Join the Waitlist
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                ) : (
+                  <div
+                    className="w-full rounded-2xl p-7 border origin-top"
+                    style={{
+                      background: "rgba(255,255,255,0.03)",
+                      borderColor: "rgba(255,255,255,0.07)",
+                      backdropFilter: "blur(12px)",
+                      boxShadow: "0 32px 64px rgba(0,0,0,0.4)",
+                      animation: "formPop 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+                    }}
+                  >
+                    <WaitlistForm />
+                  </div>
+                )}
               </div>
 
               {/* Social proof */}
