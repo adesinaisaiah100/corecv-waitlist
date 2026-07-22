@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { Resend } from "resend";
 
 export async function POST(req: NextRequest) {
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const resendKey = process.env.RESEND_API_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       console.error("Missing Supabase environment variables.");
@@ -15,6 +17,7 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = createClient(supabaseUrl, supabaseKey);
+    const resend = resendKey ? new Resend(resendKey) : null;
 
     const { name, email, career_position } = await req.json();
 
@@ -45,7 +48,6 @@ export async function POST(req: NextRequest) {
 
     if (error) {
       if (error.code === "23505") {
-        // Unique constraint violation — email already exists
         return NextResponse.json(
           { error: "You're already on the waitlist! We'll be in touch." },
           { status: 409 }
@@ -58,8 +60,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // TODO: Send confirmation email here (you'll guide on provider)
-    // await sendConfirmationEmail({ name, email });
+    // Send confirmation email via Resend
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: "CoreCV <hello@corecv.app>", // Update with your verified domain
+          to: email.trim().toLowerCase(),
+          subject: "You're on the list! Welcome to CoreCV",
+          html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1E293B;">
+              <h2 style="color: #0D1117;">Hey ${name.trim().split(' ')[0]},</h2>
+              <p>You're officially on the waitlist for CoreCV!</p>
+              <p>We're building the ultimate AI career intelligence platform, and as a <strong>${career_position.trim()}</strong>, you'll be among the first to get access when we open the doors.</p>
+              <p>In the meantime, keep an eye on your inbox. We'll be sending exclusive updates and inviting early access members soon.</p>
+              <br/>
+              <p>Best,</p>
+              <p><strong>The CoreCV Team</strong></p>
+            </div>
+          `,
+        });
+      } catch (emailError) {
+        console.error("Failed to send confirmation email:", emailError);
+        // We still return 200 success because the db insert worked
+      }
+    } else {
+      console.warn("RESEND_API_KEY is not set. Skipping confirmation email.");
+    }
 
     return NextResponse.json(
       { message: "You're on the list! We'll be in touch soon." },
