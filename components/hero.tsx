@@ -22,8 +22,6 @@ function ZIndexSeamlessHeroVideo() {
   const vid2Ref = useRef<HTMLVideoElement>(null);
   const [topVideo, setTopVideo] = useState<1 | 2>(1);
 
-  const videoSrc = "/hero-video-zindex.mp4";
-
   useEffect(() => {
     const vid1 = vid1Ref.current;
     const vid2 = vid2Ref.current;
@@ -102,7 +100,6 @@ function ZIndexSeamlessHeroVideo() {
         {/* Video 1 */}
         <video
           ref={vid1Ref}
-          src={videoSrc}
           muted
           playsInline
           preload="auto"
@@ -115,12 +112,14 @@ function ZIndexSeamlessHeroVideo() {
             zIndex: topVideo === 1 ? 2 : 1,
           }}
           className="pointer-events-none"
-        />
+        >
+          <source src="/hero-video-zindex.webm" type="video/webm" />
+          <source src="/hero-video-zindex-compressed.mp4" type="video/mp4" />
+        </video>
 
         {/* Video 2 */}
         <video
           ref={vid2Ref}
-          src={videoSrc}
           muted
           playsInline
           preload="auto"
@@ -133,7 +132,10 @@ function ZIndexSeamlessHeroVideo() {
             zIndex: topVideo === 2 ? 2 : 1,
           }}
           className="pointer-events-none"
-        />
+        >
+          <source src="/hero-video-zindex.webm" type="video/webm" />
+          <source src="/hero-video-zindex-compressed.mp4" type="video/mp4" />
+        </video>
       </div>
     </div>
   );
