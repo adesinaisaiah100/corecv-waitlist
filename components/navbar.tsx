@@ -66,6 +66,7 @@ export const Navbar = () => {
     const currentPath = clean(pathname || "/");
     const currentHash = hash || "";
     return (href: string) => {
+
       const [hrefPathRaw, hrefHashRaw] = href.split("#");
       const hrefPath = clean(hrefPathRaw || "/");
       if (hrefHashRaw) return currentPath === hrefPath && currentHash === `#${hrefHashRaw}`;
@@ -82,7 +83,6 @@ export const Navbar = () => {
   const Navlinks = [
     { name: "How it works", href: "/#how-it-works" },
     { name: "Features",     href: "/#features" },
-    { name: "Pricing",      href: "/#pricing" },
     { name: "Blog",         href: "/blog" },
   ];
 
@@ -144,6 +144,9 @@ export const Navbar = () => {
                 name={link.name}
                 href={link.href}
                 active={isActive(link.href)}
+                onClick={() => handleLinkClick(link.href)}
+              />
+            </li>
           ))}
         </ul>
 

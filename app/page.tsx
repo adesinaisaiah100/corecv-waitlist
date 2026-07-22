@@ -5,8 +5,6 @@ import { ProblemSection } from "@/components/problem-section";
 import { PillarsSection } from "@/components/pillars-section";
 import { QuestionsSection } from "@/components/questions-section";
 import { AudienceSection } from "@/components/audience-section";
-import { Testimonials } from "@/components/testimonials";
-import Pricing from "@/components/pricing";
 import { FAQ } from "@/components/faq";
 import WaitlistForm from "@/components/WaitlistForm";
 
@@ -27,11 +25,6 @@ export default function Page() {
         <QuestionsSection />
 
         <AudienceSection />
-
-        <div id="pricing" className="w-full">
-          <Testimonials />
-          <Pricing />
-        </div>
 
         <FAQ />
 
