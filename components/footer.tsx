@@ -24,7 +24,6 @@ export default function Footer() {
 						<div className="text-sm font-bold text-white uppercase tracking-wider">Product</div>
 						<Link href="/#how-it-works" className="text-sm hover:text-white transition-colors">How it works</Link>
 						<Link href="/#features" className="text-sm hover:text-white transition-colors">Features</Link>
-						<Link href="/#pricing" className="text-sm hover:text-white transition-colors">Pricing</Link>
 						<Link href="/#solution" className="text-sm hover:text-white transition-colors">The Master Vault</Link>
 						<Link href="/#features" className="text-sm hover:text-white transition-colors">Content Engine</Link>
 					</div>
