@@ -122,7 +122,7 @@ export default function WaitlistForm() {
                 <p className="text-xs font-bold text-emerald-400">[{claimedSpots} / {totalSpots} Claimed]</p>
               </div>
               <div className="w-full h-3 bg-white/10 rounded-full overflow-hidden">
-                <div className="h-full bg-emerald-500 rounded-full" style={{ width: \`\${scarcityPercent}%\` }} />
+                <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${scarcityPercent}%` }} />
               </div>
             </div>
           </div>
