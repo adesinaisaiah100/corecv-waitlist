@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     const supabase = createClient(supabaseUrl, supabaseKey);
     const resend = resendKey ? new Resend(resendKey) : null;
 
-    const { name, email, career_position } = await req.json();
+    const { name, email, career_position, ref } = await req.json();
 
     // Basic validation
     if (!name || !email || !career_position) {
@@ -37,14 +37,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Generate unique referral code (e.g., isaiah-4x9a)
+    const firstName = name.trim().split(" ")[0].toLowerCase().replace(/[^a-z0-9]/g, "");
+    const randomSuffix = Math.random().toString(36).substring(2, 6);
+    const referralCode = `${firstName}-${randomSuffix}`;
+
     // Insert into Supabase
-    const { error } = await supabase.from("waitlist_signups").insert([
+    const { error, data: insertedUser } = await supabase.from("waitlist_signups").insert([
       {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         career_position: career_position.trim(),
+        referral_code: referralCode,
+        referred_by: ref || null,
       },
-    ]);
+    ]).select().single();
 
     if (error) {
       if (error.code === "23505") {
@@ -59,6 +66,27 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Process Referral Increment
+    if (ref) {
+      const { data: inviter } = await supabase
+        .from("waitlist_signups")
+        .select("referral_count")
+        .eq("referral_code", ref)
+        .single();
+      
+      if (inviter) {
+        await supabase
+          .from("waitlist_signups")
+          .update({ referral_count: inviter.referral_count + 1 })
+          .eq("referral_code", ref);
+      }
+    }
+
+    // Get current total count for Rank
+    const { count: totalWaitlist } = await supabase
+      .from("waitlist_signups")
+      .select("*", { count: "exact", head: true });
 
     // Send confirmation email via Resend
     if (resend) {
@@ -81,7 +109,7 @@ export async function POST(req: NextRequest) {
                   <p style="margin: 0; color: #10B981; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Status: Verified Early Access</p>
                 </div>
 
-                <p style="font-size: 16px; line-height: 1.6; color: #94A3B8;">In the meantime, keep an eye on your inbox. We'll be sending exclusive updates and inviting early access members soon.</p>
+                <p style="font-size: 16px; line-height: 1.6; color: #94A3B8;">Want to guarantee your Founding Member spot and skip the line? Grab your unique invite link from your dashboard and refer 3 friends.</p>
                 <br/>
                 <p style="font-size: 16px; color: #F8FAFC; margin-bottom: 4px;">Best,</p>
                 <p style="font-size: 16px; color: #10B981; font-weight: bold; margin-top: 0;">The CoreCV Team</p>
@@ -95,14 +123,15 @@ export async function POST(req: NextRequest) {
         });
       } catch (emailError) {
         console.error("Failed to send confirmation email:", emailError);
-        // We still return 200 success because the db insert worked
       }
-    } else {
-      console.warn("RESEND_API_KEY is not set. Skipping confirmation email.");
     }
 
     return NextResponse.json(
-      { message: "You're on the list! We'll be in touch soon." },
+      { 
+        message: "You're on the list! We'll be in touch soon.",
+        referral_code: referralCode,
+        rank: totalWaitlist || 1
+      },
       { status: 200 }
     );
   } catch (err) {

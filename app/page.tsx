@@ -44,7 +44,7 @@ export default function Page() {
               Secure your spot.
             </h2>
             <p className="text-[#8892A4] text-center mb-10 max-w-md">
-              Join the waitlist today. Be among the first to get access and help shape how ambitious professionals build their careers.
+              Become a founding member today. Be among the first to get access and help shape how ambitious professionals build their careers.
             </p>
             <div className="w-full rounded-2xl p-7 border" style={{
               background: "rgba(255,255,255,0.03)",

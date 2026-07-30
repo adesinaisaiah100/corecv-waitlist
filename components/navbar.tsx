@@ -162,7 +162,7 @@ export const Navbar = () => {
             onClick={() => setOpen(false)}
             className="text-sm font-semibold text-slate-300 hover:text-white transition-colors w-full md:w-auto text-center py-2 md:py-0 md:mr-3"
           >
-            Join Waitlist
+            Become a Member
           </Link>
           <Link
             href="#waitlist"

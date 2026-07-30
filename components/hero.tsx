@@ -227,7 +227,7 @@ export const Hero = () => {
               >
                 <div className="absolute inset-0 w-full h-full -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shine pointer-events-none" />
                 <span className="relative z-10 flex items-center gap-2">
-                  Join the Waitlist
+                  Become a Founding Member
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>

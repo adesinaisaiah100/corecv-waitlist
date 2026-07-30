@@ -10,20 +10,20 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "CoreCV — Join the Waitlist",
+  title: "CoreCV — Become a Founding Member",
   description:
-    "CoreCV is your AI-powered career intelligence platform. Build your master vault, craft standout career artifacts, and make smarter career decisions. Join the waitlist for early access.",
+    "CoreCV is your AI-powered career intelligence platform. Build your master vault, craft standout career artifacts, and make smarter career decisions. Become a founding member for early access.",
   keywords: [
     "CoreCV",
     "career platform",
     "AI resume builder",
     "career intelligence",
     "job search",
-    "waitlist",
+    "founding member",
     "early access",
   ],
   openGraph: {
-    title: "CoreCV — Join the Waitlist",
+    title: "CoreCV — Become a Founding Member",
     description:
       "Your AI-powered career operating system. Join 140+ professionals building smarter careers.",
     url: "https://corecv.app",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CoreCV — Join the Waitlist",
+    title: "CoreCV — Become a Founding Member",
     description:
       "Your AI-powered career operating system. Join 140+ professionals building smarter careers.",
   },
