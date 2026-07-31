@@ -101,13 +101,16 @@ export default function WaitlistForm() {
           You're in, {name.split(' ')[0]}.
         </h3>
         
-        {/* Status Row */}
-        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm text-slate-400 mb-8">
-          <span>Status: Early Access</span>
-          <span className="w-1 h-1 rounded-full bg-slate-700" />
-          <span>Position: #{rank.toLocaleString()}</span>
-          <span className="w-1 h-1 rounded-full bg-slate-700" />
-          <span>Founding Spots: {claimedSpots}/{totalSpots}</span>
+        {/* Gamified Rank Display */}
+        <div className="flex flex-col items-center justify-center gap-1 mb-8 mt-2">
+          <p className="text-xs font-bold text-slate-500 tracking-widest uppercase">Your Position</p>
+          <div className="text-5xl md:text-6xl font-mono font-black text-white tracking-tighter" style={{ textShadow: "0 4px 24px rgba(255,255,255,0.15)" }}>
+            #{rank.toLocaleString()}
+          </div>
+          <div className="flex items-center gap-2 mt-3">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
+            <p className="text-xs font-semibold tracking-widest uppercase text-emerald-400">Early Access Confirmed</p>
+          </div>
         </div>
 
         {/* The Hack / Gamification */}
