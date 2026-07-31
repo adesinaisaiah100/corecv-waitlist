@@ -211,7 +211,7 @@ export const Hero = () => {
               className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-14"
             >
               <Link
-                href="#waitlist"
+                href="/join"
                 className="group relative overflow-hidden inline-flex items-center justify-center gap-2 px-8 py-4 font-semibold rounded-full transition-all duration-200 text-base hover:-translate-y-0.5 active:scale-95"
                 style={{
                   background: "#10B981",

@@ -158,14 +158,14 @@ export const Navbar = () => {
           )}
         >
           <Link
-            href="#waitlist"
+            href="/join"
             onClick={() => setOpen(false)}
             className="text-sm font-semibold text-slate-300 hover:text-white transition-colors w-full md:w-auto text-center py-2 md:py-0 md:mr-3"
           >
             Become a Member
           </Link>
           <Link
-            href="#waitlist"
+            href="/join"
             onClick={() => setOpen(false)}
             className="w-full md:w-auto px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:scale-105 active:scale-95 text-center"
             style={{
