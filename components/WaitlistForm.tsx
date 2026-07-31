@@ -87,77 +87,96 @@ export default function WaitlistForm() {
 
   if (formState === "success") {
     return (
-      <div className="w-full flex flex-col items-center text-center animate-in fade-in zoom-in duration-500 py-4">
+      <div className="w-full flex flex-col gap-6 animate-in fade-in zoom-in duration-500">
         
-        {/* Animated Check */}
-        <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
-          <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-          </svg>
+        {/* TOP CARD: The Ticket / Rank */}
+        <div className="w-full relative rounded-2xl overflow-hidden border border-white/10 bg-black/20 p-6 md:p-8 flex flex-col items-center text-center">
+           <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-500 to-blue-500" />
+           <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 mt-2">Your Waitlist Position</p>
+           <div className="text-6xl md:text-7xl font-mono font-black text-white tracking-tighter mb-6" style={{ textShadow: "0 4px 24px rgba(255,255,255,0.15)" }}>
+             #{rank.toLocaleString()}
+           </div>
+           
+           <div className="flex flex-col w-full max-w-xs gap-2">
+             <div className="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-wider">
+               <span>Spots Claimed</span>
+               <span className="text-emerald-400">[{claimedSpots} / {totalSpots}]</span>
+             </div>
+             <div className="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
+               <div className="h-full bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" style={{ width: `${scarcityPercent}%` }} />
+             </div>
+           </div>
         </div>
 
-        {/* Hero Typography */}
-        <h3 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-3" style={{ fontFamily: "var(--font-outfit), sans-serif" }}>
-          You're in, {name.split(' ')[0]}.
-        </h3>
-        
-        {/* Gamified Rank Display */}
-        <div className="flex flex-col items-center justify-center gap-1 mb-8 mt-2">
-          <p className="text-xs font-bold text-slate-500 tracking-widest uppercase">Your Position</p>
-          <div className="text-5xl md:text-6xl font-mono font-black text-white tracking-tighter" style={{ textShadow: "0 4px 24px rgba(255,255,255,0.15)" }}>
-            #{rank.toLocaleString()}
-          </div>
-          <div className="flex items-center gap-2 mt-3">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
-            <p className="text-xs font-semibold tracking-widest uppercase text-emerald-400">Early Access Confirmed</p>
-          </div>
-        </div>
-
-        {/* The Hack / Gamification */}
-        <div className="w-full max-w-sm flex flex-col items-center">
-          <p className="text-sm text-slate-300 mb-6 leading-relaxed">
-            Want to secure your spot and unlock the 30-Day Career Sprint? Invite 3 professionals using your unique link.
+        {/* BOTTOM CARD: The Gamification / Referrals */}
+        <div className="w-full rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.02] p-6 md:p-8 flex flex-col text-left relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full pointer-events-none" />
+          
+          <h4 className="text-xl font-extrabold text-white mb-2">🚀 Skip the line</h4>
+          <p className="text-sm text-slate-400 mb-6">
+            Invite 3 professionals to unlock Founding Member status instantly.
           </p>
 
-          {/* Clean Input & Copy */}
-          <div className="w-full flex items-center bg-[#000000] border border-white/10 rounded-xl p-1.5 pl-4 mb-6 transition-all hover:border-white/20 focus-within:border-white/30 focus-within:ring-1 focus-within:ring-white/10">
-            <input 
-              readOnly
-              value={`early.corecv.app/?ref=${referralCode}`}
-              className="bg-transparent border-none outline-none text-slate-300 text-sm flex-1 w-full truncate select-all"
-            />
-            <button 
-              onClick={handleCopy}
-              className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-xs font-bold transition-all ml-2"
-            >
-              {copied ? "COPIED" : "COPY"}
-            </button>
+          <div className="flex flex-col gap-4 mb-8 bg-black/20 p-5 rounded-xl border border-white/5">
+             <div className="flex items-center gap-4">
+               <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">1</div>
+               <p className="text-sm font-medium text-slate-300">Get 30 Days of CoreCV Pro (Free)</p>
+             </div>
+             <div className="flex items-center gap-4">
+               <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">2</div>
+               <p className="text-sm font-medium text-slate-300">The Insider ATS Playbook (PDF)</p>
+             </div>
+             <div className="flex items-center gap-4">
+               <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">3</div>
+               <p className="text-sm font-medium text-slate-300">Priority access to unreleased AI</p>
+             </div>
           </div>
 
-          {/* Socials (Monochrome Minimalist) */}
-          <div className="flex gap-4">
+          <div className="flex flex-col gap-2 mb-6">
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Your Invite Link</p>
+            <div className="flex items-center bg-[#000000] border border-white/10 rounded-xl p-1.5 pl-4 transition-all focus-within:border-white/30">
+              <input 
+                readOnly
+                value={`early.corecv.app/?ref=${referralCode}`}
+                className="bg-transparent border-none outline-none text-slate-300 text-sm flex-1 w-full truncate select-all"
+              />
+              <button 
+                onClick={handleCopy}
+                className="bg-white/10 hover:bg-white/20 text-white px-4 py-2.5 rounded-lg text-xs font-bold transition-all ml-2"
+              >
+                {copied ? "COPIED" : "COPY"}
+              </button>
+            </div>
+          </div>
+
+          {/* Progress to reward */}
+          <div className="flex flex-col gap-2 mb-8">
+            <div className="flex justify-between text-xs font-bold text-slate-500 uppercase tracking-widest">
+              <span>Referrals</span>
+              <span className="text-emerald-400">0 / 3</span>
+            </div>
+            <div className="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
+              <div className="h-full bg-emerald-500 rounded-full w-0" />
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 w-full">
             <a
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Just secured my spot as a CoreCV Founding Member! The ultimate AI career intelligence platform. Join me:")}&url=${encodeURIComponent(`https://early.corecv.app/?ref=${referralCode}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 hover:text-white transition-colors p-2"
-              title="Share on X"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#111111] border border-white/10 hover:border-white/30 transition-all"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
+              Share on X
             </a>
             
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://early.corecv.app/?ref=${referralCode}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-400 hover:text-white transition-colors p-2"
-              title="Share on LinkedIn"
+              className="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#0A66C2] border border-transparent hover:brightness-110 transition-all"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
+              LinkedIn
             </a>
           </div>
 
