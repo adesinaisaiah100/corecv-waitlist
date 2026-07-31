@@ -171,7 +171,7 @@ export default function WaitlistForm() {
 
           <div className="flex gap-3 w-full justify-center mt-6">
             <a
-              href={`https://twitter.com/intent/tweet?text=Just%20secured%20my%20spot%20as%20a%20CoreCV%20Founding%20Member!%20%F0%9F%9A%80%20The%20ultimate%20AI%20career%20intelligence%20platform.%20Join%20me%3A%20https://early.corecv.app/?ref=${referralCode}`}
+              href={`https://twitter.com/intent/tweet?text=Just%20secured%20my%20spot%20as%20a%20CoreCV%20Founding%20Member!%20%F0%9F%9A%80%20The%20ultimate%20AI%20career%20intelligence%20platform.%20Join%20me%3A&url=${encodeURIComponent(`https://early.corecv.app/?ref=${referralCode}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-[#000000] border border-white/10 hover:border-white/30 hover:bg-[#111111] transition-all"
@@ -180,7 +180,7 @@ export default function WaitlistForm() {
             </a>
             
             <a
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=https://early.corecv.app/?ref=${referralCode}`}
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://early.corecv.app/?ref=${referralCode}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-white bg-[#0A66C2] border border-transparent hover:brightness-110 transition-all"
