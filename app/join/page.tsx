@@ -24,7 +24,7 @@ export default function JoinPage() {
             Apply for Early Access
           </h1>
           <p className="text-[#8892A4] text-center mb-10 max-w-md text-lg">
-            Join the waitlist to become a Founding Member and unlock the 30-Day Career Sprint package.
+            Join the waitlist to become a Founding User and unlock the 30-Day Career Sprint package.
           </p>
 
           <div className="w-full rounded-2xl p-7 border relative overflow-hidden" style={{

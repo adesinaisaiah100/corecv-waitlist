@@ -46,7 +46,7 @@ export default function Page() {
               Ready to upgrade your career?
             </h2>
             <p className="text-[#8892A4] text-center mb-10 text-lg md:text-xl max-w-lg">
-              Apply to become a Founding Member today. Be among the first to get access and unlock the 30-Day Career Sprint package.
+              Apply to become a Founding User today. Be among the first to get access and unlock the 30-Day Career Sprint package.
             </p>
             <Link
               href="/join"
