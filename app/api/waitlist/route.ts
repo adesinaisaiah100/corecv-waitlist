@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
                   <p style="margin: 0; color: #10B981; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Status: Verified Early Access</p>
                 </div>
 
-                <p style="font-size: 16px; line-height: 1.6; color: #94A3B8;">Want to guarantee your Founding Member spot and skip the line? Grab your unique invite link from your dashboard and refer 3 friends.</p>
+                <p style="font-size: 16px; line-height: 1.6; color: #94A3B8;">Want to guarantee your Founding User spot and skip the line? Grab your unique invite link from your dashboard and refer 3 friends.</p>
                 <br/>
                 <p style="font-size: 16px; color: #F8FAFC; margin-bottom: 4px;">Best,</p>
                 <p style="font-size: 16px; color: #10B981; font-weight: bold; margin-top: 0;">The CoreCV Team</p>
