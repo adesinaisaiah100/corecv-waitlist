@@ -113,7 +113,7 @@ export const Navbar = () => {
                 width={28}
                 height={28}
                 style={{
-                  filter: "brightness(0) invert(1)", // Turn black logo into crisp white
+                  // Logo is natively white — no filter needed
                 }}
               />
             </div>
@@ -162,7 +162,7 @@ export const Navbar = () => {
             onClick={() => setOpen(false)}
             className="text-sm font-semibold text-slate-300 hover:text-white transition-colors w-full md:w-auto text-center py-2 md:py-0 md:mr-3"
           >
-            Become a Member
+            Become a Founding User
           </Link>
           <Link
             href="/join"
