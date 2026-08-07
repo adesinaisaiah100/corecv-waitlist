@@ -114,7 +114,7 @@ export default function WaitlistForm() {
           
           <h4 className="text-xl font-extrabold text-white mb-2">🚀 Skip the line</h4>
           <p className="text-sm text-slate-400 mb-6">
-            Invite 3 professionals to unlock Founding Member status instantly.
+            Invite 3 professionals to unlock Founding User status instantly.
           </p>
 
           <div className="flex flex-col gap-4 mb-8 bg-black/20 p-5 rounded-xl border border-white/5">
@@ -162,7 +162,7 @@ export default function WaitlistForm() {
 
           <div className="flex flex-col sm:flex-row gap-3 w-full">
             <a
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Just secured my spot as a CoreCV Founding Member! The ultimate AI career intelligence platform. Join me:")}&url=${encodeURIComponent(`https://early.corecv.app/?ref=${referralCode}`)}`}
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("Just secured my spot as a CoreCV Founding User! The ultimate AI career intelligence platform. Join me:")}&url=${encodeURIComponent(`https://early.corecv.app/?ref=${referralCode}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-sm font-semibold text-white bg-[#111111] border border-white/10 hover:border-white/30 transition-all"
@@ -300,7 +300,7 @@ export default function WaitlistForm() {
           </>
         ) : (
           <>
-            Become a Founding Member
+            Become a Founding User
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
