@@ -42,10 +42,10 @@ export async function POST(req: NextRequest) {
     const textContent = emailData.text || "";
     const htmlContent = emailData.html || `<div style="white-space: pre-wrap;">${textContent}</div>`;
 
-    // Forward to Isaiah's personal inbox
+    // Forward to Isaiah's personal inboxes (Primary: adesinaisaiah100@gmail.com)
     await resend.emails.send({
       from: "CoreCV Inbound <hello@corecv.app>",
-      to: "wigoh100@gmail.com",
+      to: ["adesinaisaiah100@gmail.com", "wigoh100@gmail.com"],
       replyTo: sender,
       subject: `[CoreCV Inbound] ${subject} (to ${recipient})`,
       html: `
@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    return NextResponse.json({ success: true, forwarded_to: "wigoh100@gmail.com" }, { status: 200 });
+    return NextResponse.json({ success: true, forwarded_to: ["adesinaisaiah100@gmail.com", "wigoh100@gmail.com"] }, { status: 200 });
   } catch (error) {
     console.error("Inbound email webhook error:", error);
     return NextResponse.json({ error: "Internal processing error" }, { status: 500 });
