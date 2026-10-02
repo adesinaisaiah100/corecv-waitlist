@@ -27,7 +27,7 @@ function NavItem({ name, href, active, onClick }: NavItemProps) {
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative pb-1"
+      className="relative pb-1 text-sm font-medium"
       style={{
         color: active || hovered ? "#F1F5F9" : "rgba(148, 163, 184, 0.85)",
         transition: "color 0.3s ease",
@@ -35,7 +35,7 @@ function NavItem({ name, href, active, onClick }: NavItemProps) {
     >
       {name}
       <span
-        className="pointer-events-none absolute left-0 -bottom-0.5 h-[1.5px] w-full origin-left rounded-full"
+        className="pointer-events-none absolute left-0 -bottom-0.5 h-[1.5px] w-full origin-left rounded-xs"
         style={{
           background: "linear-gradient(to right, #10B981, #60A5FA)",
           transform: showUnderline ? "scaleX(1)" : "scaleX(0)",
@@ -66,7 +66,6 @@ export const Navbar = () => {
     const currentPath = clean(pathname || "/");
     const currentHash = hash || "";
     return (href: string) => {
-
       const [hrefPathRaw, hrefHashRaw] = href.split("#");
       const hrefPath = clean(hrefPathRaw || "/");
       if (hrefHashRaw) return currentPath === hrefPath && currentHash === `#${hrefHashRaw}`;
@@ -81,9 +80,9 @@ export const Navbar = () => {
   };
 
   const Navlinks = [
-    { name: "How it works", href: "/#how-it-works" },
-    { name: "Features",     href: "/#features" },
-    { name: "Blog",         href: "/blog" },
+    { name: "Master Vault", href: "/#master-vault" },
+    { name: "For Recruiters", href: "/#recruiters" },
+    { name: "How It Works", href: "/#how-it-works" },
   ];
 
   return (
@@ -94,9 +93,9 @@ export const Navbar = () => {
       className="sticky top-0 z-50 w-full px-4 py-3 flex justify-center items-center"
     >
       <nav
-        className="w-full max-w-7xl p-3 px-6 flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-center rounded-2xl"
+        className="w-full max-w-7xl p-3 px-6 flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-center rounded-xl"
         style={{
-          background: "rgba(13, 17, 23, 0.75)",
+          background: "rgba(13, 17, 23, 0.8)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -112,9 +111,6 @@ export const Navbar = () => {
                 alt="CoreCV Logo"
                 width={28}
                 height={28}
-                style={{
-                  // Logo is natively white — no filter needed
-                }}
               />
             </div>
             <span className="font-bold text-white tracking-tight">
@@ -126,6 +122,7 @@ export const Navbar = () => {
           <button
             className="md:hidden text-slate-300 hover:text-white"
             onClick={() => setOpen(!open)}
+            aria-label="Toggle Navigation Menu"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -134,8 +131,8 @@ export const Navbar = () => {
         {/* ── NAV LINKS ────────────────────────────────────────────────── */}
         <ul
           className={cn(
-            "flex flex-col md:flex-row items-center gap-6 w-full md:w-auto transition-all",
-            open ? "flex" : "hidden md:flex"
+            "flex flex-col md:flex-row items-center gap-7 w-full md:w-auto transition-all",
+            open ? "flex pt-4 md:pt-0" : "hidden md:flex"
           )}
         >
           {Navlinks.map((link) => (
@@ -150,30 +147,30 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        {/* ── CTA BUTTON ───────────────────────────────────────────────── */}
+        {/* ── CTA BUTTONS (WAITLIST TAILORED) ─────────────────────────── */}
         <div
           className={cn(
-            "flex flex-col md:flex-row items-center gap-3 w-full md:w-auto",
-            open ? "flex" : "hidden md:flex"
+            "flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto",
+            open ? "flex pt-2 md:pt-0" : "hidden md:flex"
           )}
         >
           <Link
             href="/join"
+            className="text-sm font-semibold text-slate-300 hover:text-white transition-colors px-2 py-1"
             onClick={() => setOpen(false)}
-            className="text-sm font-semibold text-slate-300 hover:text-white transition-colors w-full md:w-auto text-center py-2 md:py-0 md:mr-3"
           >
-            Become a Founding User
+            Founding Member
           </Link>
-          <Link
-            href="/join"
-            onClick={() => setOpen(false)}
-            className="w-full md:w-auto px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:scale-105 active:scale-95 text-center"
-            style={{
-              background: "linear-gradient(135deg, #10B981, #059669)",
-              boxShadow: "0 4px 14px rgba(16,185,129,0.3)",
-            }}
-          >
-            Get Early Access
+          <Link href="/join" className="w-full sm:w-auto" onClick={() => setOpen(false)}>
+            <button
+              className="w-full sm:w-auto font-semibold py-2 px-5 rounded-lg text-sm text-white transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-1.5"
+              style={{
+                background: "#10B981",
+                boxShadow: "0 4px 20px rgba(16, 185, 129, 0.35)",
+              }}
+            >
+              Join the waitlist &rarr;
+            </button>
           </Link>
         </div>
       </nav>

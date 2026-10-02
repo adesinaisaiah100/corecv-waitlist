@@ -1,11 +1,42 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/next";
+import { Nunito, Plus_Jakarta_Sans, Outfit, Space_Grotesk, Bricolage_Grotesque } from "next/font/google";
+import { LenisProvider } from "@/components/lenis-provider";
 import "./globals.css";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-nunito",
+  display: "swap",
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
 
 const outfit = Outfit({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-outfit",
+  display: "swap",
+});
+
+const space = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-space",
+  display: "swap",
+});
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-bricolage",
   display: "swap",
 });
 
@@ -13,17 +44,17 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://waitlist.corecv.app"),
   title: "CoreCV — Become a Founding User",
   description:
-    "CoreCV is your AI-powered career operating system. Build a Master Vault, generate tailored resumes, practise mock interviews, and publish career content — all in one place. Join as a founding user for early access.",
+    "CoreCV is your professional record, built on what you've actually done. Build your Master Vault, verify projects with real evidence, and let your work speak to recruiters. Join as a founding user for early access.",
   keywords: [
     "CoreCV",
-    "AI career platform",
-    "AI resume builder",
-    "career intelligence",
+    "Master Career Vault",
+    "professional record",
+    "verified work evidence",
     "founding user",
     "early access",
     "career vault",
-    "job search AI",
-    "mock interviews",
+    "technical portfolio",
+    "recruiter proof",
   ],
   authors: [{ name: "CoreCV", url: "https://corecv.app" }],
   creator: "CoreCV",
@@ -42,7 +73,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CoreCV — Become a Founding User",
     description:
-      "Your AI-powered career operating system. Build your Master Vault, craft standout career artifacts, and make smarter career decisions. Join 140+ professionals getting early access.",
+      "Your professional record, built on what you've actually done. Build your Master Vault and join founding professionals getting early access.",
     url: "https://waitlist.corecv.app",
     siteName: "CoreCV",
     type: "website",
@@ -51,7 +82,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "CoreCV — AI Career Intelligence Platform",
+        alt: "CoreCV — Professional Career Vault",
       },
     ],
   },
@@ -59,7 +90,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CoreCV — Become a Founding User",
     description:
-      "Your AI-powered career operating system. Join 140+ professionals building smarter careers.",
+      "Your professional record, built on what you've actually done. Join professionals building their Master Vault.",
     images: ["/opengraph-image.png"],
     creator: "@corecvapp",
   },
@@ -75,7 +106,7 @@ const jsonLd = {
   name: "CoreCV",
   url: "https://corecv.app",
   description:
-    "CoreCV is an AI-powered career intelligence platform. Build a Master Vault of your career history once, then generate tailored resumes, run personalised AI mock interviews, and publish professional career content.",
+    "CoreCV is a professional record platform. Build a Master Vault of your career history once with verifiable evidence, architecture diagrams, and measurable metrics.",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   offers: {
@@ -89,19 +120,24 @@ const jsonLd = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
-    <html lang="en" className={outfit.variable}>
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${outfit.className} antialiased`} style={{ background: "#0D1117" }}>
-        {children}
+      <body
+        className={`antialiased font-sans ${nunito.variable} ${jakarta.variable} ${outfit.variable} ${space.variable} ${bricolage.variable} ${nunito.className}`}
+        style={{ background: "#0D1117" }}
+      >
         <Analytics />
+        <LenisProvider>
+          {children}
+        </LenisProvider>
       </body>
     </html>
   );
