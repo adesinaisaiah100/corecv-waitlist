@@ -26,19 +26,6 @@ function JoinContent() {
 
   return (
     <div className="w-full max-w-xl flex flex-col items-center">
-      {/* Dynamic Scarcity / Partner Badge */}
-      <div
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-semibold tracking-widest uppercase mb-6 border"
-        style={{
-          background: "rgba(16,185,129,0.08)",
-          borderColor: "rgba(16,185,129,0.2)",
-          color: "#10B981",
-        }}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        {activeTab === "candidate" ? "Early Access • 500 Spots" : "Hiring Teams • Partner Network"}
-      </div>
-
       {/* Main Headline */}
       <h1
         className="text-3xl md:text-5xl font-extrabold mb-4 text-center tracking-tight text-white leading-tight"

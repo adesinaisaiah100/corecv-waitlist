@@ -116,15 +116,15 @@ export default function WaitlistForm() {
                <span>Spots Claimed</span>
                <span className="text-emerald-400">[{claimedSpots} / {totalSpots}]</span>
              </div>
-             <div className="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
-               <div className="h-full bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" style={{ width: `${scarcityPercent}%` }} />
+             <div className="w-full h-2 bg-white/10 rounded-md overflow-hidden">
+               <div className="h-full bg-emerald-500 rounded-md shadow-[0_0_10px_rgba(16,185,129,0.5)]" style={{ width: `${scarcityPercent}%` }} />
              </div>
            </div>
         </div>
 
         {/* BOTTOM CARD: The Gamification / Referrals */}
         <div className="w-full rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.02] p-6 md:p-8 flex flex-col text-left relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-full pointer-events-none" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl rounded-2xl pointer-events-none" />
           
           <h4 className="text-xl font-extrabold text-white mb-2">🚀 Skip the line</h4>
           <p className="text-sm text-slate-400 mb-6">
@@ -133,15 +133,15 @@ export default function WaitlistForm() {
 
           <div className="flex flex-col gap-4 mb-8 bg-black/20 p-5 rounded-xl border border-white/5">
              <div className="flex items-center gap-4">
-               <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">1</div>
+               <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">1</div>
                <p className="text-sm font-medium text-slate-300">Get 30 Days of CoreCV Pro (Free)</p>
              </div>
              <div className="flex items-center gap-4">
-               <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">2</div>
+               <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">2</div>
                <p className="text-sm font-medium text-slate-300">The Insider ATS Playbook (PDF)</p>
              </div>
              <div className="flex items-center gap-4">
-               <div className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">3</div>
+               <div className="flex-shrink-0 w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm font-bold border border-emerald-500/30">3</div>
                <p className="text-sm font-medium text-slate-300">Priority access to unreleased AI</p>
              </div>
           </div>
@@ -169,8 +169,8 @@ export default function WaitlistForm() {
               <span>Referrals</span>
               <span className="text-emerald-400">0 / 3</span>
             </div>
-            <div className="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
-              <div className="h-full bg-emerald-500 rounded-full w-0" />
+            <div className="w-full h-2 bg-white/10 rounded-md overflow-hidden">
+              <div className="h-full bg-emerald-500 rounded-md w-0" />
             </div>
           </div>
 
