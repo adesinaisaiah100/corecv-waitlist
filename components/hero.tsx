@@ -70,7 +70,7 @@ export const Hero = () => {
               </button>
             </Link>
 
-            <Link href="/#recruiters" className="w-full sm:w-auto">
+            <Link href="/join?type=recruiter" className="w-full sm:w-auto">
               <button className="w-full sm:w-auto font-semibold py-3.5 px-6 rounded-lg text-base text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2">
                 For recruiters &rarr; Early access
               </button>

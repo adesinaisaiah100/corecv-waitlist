@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const CAREER_OPTIONS = [
   "Software Engineer",
@@ -25,6 +26,9 @@ export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [careerPosition, setCareerPosition] = useState("");
   const [otherPosition, setOtherPosition] = useState("");
+  const [phone, setPhone] = useState("");
+  const [subscribeUpdates, setSubscribeUpdates] = useState(true);
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const [formState, setFormState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
   const [referralCode, setReferralCode] = useState("");
@@ -42,7 +46,13 @@ export default function WaitlistForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !finalPosition) return;
+    if (!name || !email || !finalPosition || !agreeTerms) {
+      if (!agreeTerms) {
+        setMessage("Please agree to the Terms of Service and Privacy Policy.");
+        setFormState("error");
+      }
+      return;
+    }
 
     setFormState("loading");
 
@@ -55,9 +65,13 @@ export default function WaitlistForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
-          email,
-          career_position: finalPosition,
+          name: name.trim(),
+          email: email.trim().toLowerCase(),
+          career_position: finalPosition.trim(),
+          phone: phone.trim() || undefined,
+          role_type: "candidate",
+          subscribed_to_updates: subscribeUpdates,
+          agree_terms: agreeTerms,
           ref, // Pass the ref code to the backend
         }),
       });
@@ -275,19 +289,75 @@ export default function WaitlistForm() {
         </div>
       </div>
 
+      {/* Phone (Optional - WhatsApp Preferred) */}
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-center justify-between">
+          <label htmlFor="phone" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            Phone
+          </label>
+          <span className="text-[11px] text-slate-500 font-normal">
+            (optional - whatsapp preferred)
+          </span>
+        </div>
+        <input
+          id="phone"
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="+234 800 000 0000"
+          className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-600 text-sm outline-none focus:border-emerald-500/60 focus:ring-2 focus:ring-emerald-500/20 transition-all"
+          disabled={formState === "loading"}
+        />
+      </div>
+
+      {/* Checkbox 1: Product & Career Updates */}
+      <label className="flex items-start gap-3 cursor-pointer pt-2 group">
+        <input
+          type="checkbox"
+          checked={subscribeUpdates}
+          onChange={(e) => setSubscribeUpdates(e.target.checked)}
+          className="mt-0.5 w-4 h-4 rounded border-slate-700 bg-white/5 text-emerald-500 focus:ring-emerald-500/30 accent-emerald-500 cursor-pointer"
+        />
+        <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
+          Keep me updated on platform releases, product insights, and early access.
+        </span>
+      </label>
+
+      {/* Checkbox 2: Terms & Privacy Agreement */}
+      <label className="flex items-start gap-3 cursor-pointer group">
+        <input
+          type="checkbox"
+          required
+          checked={agreeTerms}
+          onChange={(e) => setAgreeTerms(e.target.checked)}
+          className="mt-0.5 w-4 h-4 rounded border-slate-700 bg-white/5 text-emerald-500 focus:ring-emerald-500/30 accent-emerald-500 cursor-pointer"
+        />
+        <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
+          I agree to CoreCV&apos;s{" "}
+          <Link href="/terms" target="_blank" className="text-emerald-400 hover:text-emerald-300 underline font-medium">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link href="/privacy" target="_blank" className="text-emerald-400 hover:text-emerald-300 underline font-medium">
+            Privacy Policy
+          </Link>
+          .
+        </span>
+      </label>
+
       {formState === "error" && (
-        <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 px-4 py-3 rounded-xl">
+        <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 px-4 py-3 rounded-xl mt-1">
           {message}
         </p>
       )}
 
       <button
         type="submit"
-        disabled={formState === "loading" || !name || !email || !finalPosition}
-        className="w-full mt-1 py-3.5 px-6 rounded-xl font-semibold text-sm text-white transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 active:scale-95"
+        disabled={formState === "loading" || !name || !email || !finalPosition || !agreeTerms}
+        className="w-full mt-2 py-3.5 px-6 rounded-xl font-semibold text-sm text-white transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5 active:scale-95"
         style={{
-          background: "linear-gradient(135deg, #10B981, #059669)",
-          boxShadow: "0 4px 24px rgba(16, 185, 129, 0.3)",
+          background: "#10B981",
+          boxShadow: "0 4px 20px rgba(16, 185, 129, 0.3)",
         }}
       >
         {formState === "loading" ? (

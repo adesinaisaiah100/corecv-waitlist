@@ -144,7 +144,7 @@ export const RecruitersSection = () => {
               Less digging. More relevant people.
             </p>
             <Link
-              href="/join"
+              href="/join?type=recruiter"
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#10B981] hover:bg-[#0ea872] text-white font-semibold rounded-lg transition-all text-sm active:scale-95 shadow-md shadow-emerald-500/20"
             >
               Join recruiter waitlist &rarr;

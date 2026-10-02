@@ -165,7 +165,7 @@ export const FoundingAndFaqSection = () => {
               </Link>
 
               <Link
-                href="/#recruiters"
+                href="/join?type=recruiter"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 font-semibold rounded-lg border border-slate-700/80 bg-white/[0.02] text-slate-200 hover:text-white hover:border-slate-500 transition-all duration-200 text-base hover:-translate-y-0.5"
               >
                 For recruiters &rarr; Early access

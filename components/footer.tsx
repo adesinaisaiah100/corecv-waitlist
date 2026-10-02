@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <div className="text-sm font-bold text-white uppercase tracking-wider">Early Access</div>
             <Link href="/join" className="text-sm text-slate-400 hover:text-white transition-colors">Join Candidate Waitlist</Link>
-            <Link href="/join" className="text-sm text-slate-400 hover:text-white transition-colors">Recruiter Partner Access</Link>
+            <Link href="/join?type=recruiter" className="text-sm text-slate-400 hover:text-white transition-colors">Recruiter Partner Access</Link>
             <Link href="mailto:hello@corecv.app" className="text-sm text-slate-400 hover:text-white transition-colors">Contact Founders</Link>
           </div>
 
