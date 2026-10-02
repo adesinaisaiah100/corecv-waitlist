@@ -125,6 +125,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta property="og:image" content="https://waitlist.corecv.app/opengraph-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://waitlist.corecv.app/opengraph-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

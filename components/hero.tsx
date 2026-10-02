@@ -8,8 +8,11 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export const Hero = () => {
   return (
-    <section className="relative w-full pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden bg-[#0D1117] text-white">
-      <div className="w-full max-w-[1400px] mx-auto px-6 md:px-10">
+    <section
+      className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center py-16 md:py-24 overflow-hidden text-white"
+      style={{ background: "#0D1117" }}
+    >
+      <div className="relative w-full max-w-[960px] mx-auto px-6 md:px-10 text-left md:text-center flex flex-col items-start md:items-center">
         <div className="flex flex-col items-start md:items-center text-left md:text-center max-w-4xl mx-auto">
           
           {/* Eyebrow label */}
